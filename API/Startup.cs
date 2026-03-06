@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 
 namespace API
 {
@@ -31,7 +30,7 @@ namespace API
         {
             services.AddDbContext<Data>(option => option.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             services.AddControllers();
-           
+            services.AddScoped<Services.IMatchmakingService, Services.MatchmakingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
